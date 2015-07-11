@@ -1,0 +1,12 @@
+pgbouncer:
+  image: mbentley/ubuntu-pgbouncer
+  ports:
+  - 5432:6432
+  environment:
+    PG_ENV_POSTGRESQL_USER: postgres
+    PG_ENV_POSTGRESQL_PASS: postgres
+
+sampleDataRepository:
+  image: sample-data-repository
+  ports:
+  - 6432:5432

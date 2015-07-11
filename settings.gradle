@@ -1,0 +1,20 @@
+include "atom-change-event"
+include "dirty-resource-detector"
+include "event-consumer"
+include "event-emitter"
+include "kafka-beans"
+include "new-resource-detector"
+include "resource-registry"
+include "spring-scala-mock"
+
+rootProject.children.each { project ->
+    String relativeProjectPath = project.projectDir.path.replace(settingsDir.path, "")
+    project.projectDir = new File("octowight/$relativeProjectPath")
+}
+
+include "sample-event-emitter"
+include "sample-data-model"
+include "sample-data-repository"
+include "sample-new-resource-detector"
+include "sample-resource-builder"
+include "sample-resource-cache"

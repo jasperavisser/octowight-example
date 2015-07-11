@@ -1,0 +1,4 @@
+[submodule "octowight"]
+	path = octowight
+	url = https://github.com/jasperavisser/octowight.git
+

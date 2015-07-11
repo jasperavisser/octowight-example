@@ -1,0 +1,16 @@
+/bootstrap.env
+/local.properties
+
+.cache-main
+.cahce-main/
+.cache-tests
+.cache-tests/
+.gradle/
+.idea/
+.project
+.settings/
+*.iml
+*.ipr
+*.iws
+build/
+.classpath

@@ -1,0 +1,9 @@
+apply plugin: "spring-boot"
+
+apply from: "../octowight/docker.gradle"
+
+dependencies {
+    compile project(":event-emitter")
+    compile libraries.spring_data_jpa
+    testCompile project(":spring-scala-mock")
+}
