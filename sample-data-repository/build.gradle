@@ -1,5 +1,11 @@
 dependencies {
     compile project(":sample-data-model")
-    compile libraries.spring_data_jpa
+    compile "com.jolbox:bonecp-spring"
+    compile "org.aspectj:aspectjweaver"
+    compile "org.hibernate:hibernate-entitymanager"
+    compile "org.postgresql:postgresql"
+    compile "org.springframework:spring-orm"
+    compile "org.springframework.data:spring-data-commons"
+    compile "org.springframework.data:spring-data-jpa"
     testCompile project(":spring-scala-mock")
 }
