@@ -1,13 +1,13 @@
 kafkaBroker:
   extends:
-    file: common.yml
+    file: octowight/common.yml
     service: kafkaBroker
   links:
   - zookeeper:zk
 
 resourceRegistry:
   extends:
-    file: common.yml
+    file: octowight/common.yml
     service: resourceRegistry
 
 pgbouncer:
@@ -24,7 +24,7 @@ sampleDataRepository:
 
 zookeeper:
   extends:
-    file: common.yml
+    file: octowight/common.yml
     service: zookeeper
 
 dirtyResourceDetector:
