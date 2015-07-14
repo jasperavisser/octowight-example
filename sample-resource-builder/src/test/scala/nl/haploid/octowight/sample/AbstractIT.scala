@@ -1,6 +1,7 @@
 package nl.haploid.octowight.sample
 
-import nl.haploid.octowight.sample.configuration.{TestConfiguration, KafkaConfiguration, PostgresConfiguration}
+import nl.haploid.octowight.configuration.KafkaConfiguration
+import nl.haploid.octowight.sample.configuration.{PostgresConfiguration, TestConfiguration}
 import org.junit.runner.RunWith
 import org.scalatest._
 import org.scalatest.junit.JUnitRunner
