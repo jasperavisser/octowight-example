@@ -3,6 +3,7 @@ package nl.haploid.octowight.sample.configuration
 import java.util.Properties
 
 import nl.haploid.octowight.JsonMapper
+import nl.haploid.octowight.configuration.AppConfiguration
 import nl.haploid.octowight.sample.TestData
 import org.springframework.context.annotation.{Bean, ComponentScan, Configuration, FilterType}
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer
