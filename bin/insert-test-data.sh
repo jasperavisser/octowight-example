@@ -1,7 +1,6 @@
 #!/bin/bash
 cd "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")"
 
-pushd ..
 bash run-sql-command.sh "delete from octowight.role; delete from octowight.person;"
 bash run-sql-command.sh "insert into octowight.person(name) values('Picard');"
 bash run-sql-command.sh "insert into octowight.person(name) values('Riker');"
