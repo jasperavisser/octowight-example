@@ -1,29 +1,15 @@
 package nl.haploid.octowight.sample.repository
 
-import java.lang
-import javax.persistence._
-
 import nl.haploid.octowight.AtomChangeEvent
+import scalikejdbc.WrappedResultSet
 
-import scala.annotation.meta.field
+object AtomChangeEventDmo {
 
-@Entity
-@Table(name = "atom_change_event", schema = "octowight")
-case class AtomChangeEventDmo
-(
-  @(Id@field)
-  @(SequenceGenerator@field)(name = "event_sequence", sequenceName = "octowight.event_sequence")
-  @(GeneratedValue@field)(generator = "event_sequence")
-  id: lang.Long,
-  @(Column@field)(name = "atom_id")
-  atomId: lang.Long,
-  @(Column@field)(name = "atom_origin")
-  atomOrigin: String,
-  @(Column@field)(name = "atom_category")
-  atomCategory: String) {
+  def apply(rs: WrappedResultSet): AtomChangeEventDmo =
+    new AtomChangeEventDmo(id = rs.get("id"), atomId = rs.get("atom_id"), atomOrigin = rs.get("atom_origin"), atomCategory = rs.get("atom_category"))
+}
 
-  def this() =
-    this(id = null, atomId = null, atomOrigin = null, atomCategory = null)
+case class AtomChangeEventDmo(id: Long, atomId: Long, atomOrigin: String, atomCategory: String) {
 
   def toAtomChangeEvent =
     new AtomChangeEvent(id = id, atomId = atomId, atomOrigin = atomOrigin, atomCategory = atomCategory)

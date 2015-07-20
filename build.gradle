@@ -45,6 +45,8 @@ allprojects {
             dependency "org.scala-lang:scala-library:2.11.6"
             dependency "org.scala-lang:scala-compiler:2.11.6"
             dependency "org.scalatest:scalatest_2.11:2.2.4"
+            dependency "org.scalikejdbc:scalikejdbc_2.11:2.2.7"
+            dependency "org.scalikejdbc:scalikejdbc-test_2.11:2.2.7"
         }
 
         imports {

@@ -8,10 +8,9 @@ object TestData {
   val AtomLocus = nextString
   val AtomCategory = nextString
 
-  def nextLong: Long = new Random().nextLong
+  def atomChangeEventDmo = AtomChangeEventDmo(id = nextLong, atomId = nextLong, atomOrigin = nextString, atomCategory = nextString)
 
-  def atomChangeEventDmo =
-    new AtomChangeEventDmo(id = null, atomId = nextLong, atomOrigin = AtomLocus, atomCategory = AtomCategory)
+  def nextLong: Long = new Random().nextLong
 
   def topic = nextString
 

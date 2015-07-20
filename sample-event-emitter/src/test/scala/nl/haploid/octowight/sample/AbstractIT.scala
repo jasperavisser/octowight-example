@@ -8,11 +8,12 @@ import org.scalatest.junit.JUnitRunner
 import org.scalatest.tags.Slow
 import org.springframework.test.context.support.AnnotationConfigContextLoader
 import org.springframework.test.context.{ContextConfiguration, TestContextManager}
+import scalikejdbc.scalatest.AutoRollback
 
 @RunWith(classOf[JUnitRunner])
 @ContextConfiguration(classes = Array(classOf[TestConfiguration], classOf[KafkaConfiguration], classOf[PostgresConfiguration]), loader = classOf[AnnotationConfigContextLoader])
 @Slow
-abstract class AbstractIT extends FlatSpec with BeforeAndAfterEach with ShouldMatchers {
+abstract class AbstractIT extends fixture.FlatSpec with BeforeAndAfterEach with ShouldMatchers with AutoRollback {
 
   override def beforeEach() = new TestContextManager(this.getClass).prepareTestInstance(this)
 }

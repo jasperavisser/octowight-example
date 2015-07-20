@@ -7,8 +7,7 @@ import org.springframework.boot.SpringApplication
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration
 import org.springframework.context.annotation.ComponentScan
 import org.springframework.scheduling.annotation.Scheduled
-
-import scala.collection.JavaConverters._
+import scalikejdbc.DB
 
 object App {
   def main(args: Array[String]): Unit = SpringApplication.run(classOf[App])
@@ -22,9 +21,11 @@ class App {
 
   @Scheduled(fixedRate = 1000)
   def poll(): Unit = {
-    val eventDmos = atomChangeEventDmoRepository.findAll
-    val events = eventDmos.asScala.map(_.toAtomChangeEvent)
-    eventChannelService.sendEvents(events)
-    atomChangeEventDmoRepository.delete(eventDmos)
+    DB localTx { implicit session =>
+      val eventDmos = atomChangeEventDmoRepository.findAll
+      val events = eventDmos.map(_.toAtomChangeEvent)
+      eventChannelService.sendEvents(events)
+      atomChangeEventDmoRepository.delete(eventDmos)
+    }
   }
 }
