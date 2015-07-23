@@ -62,3 +62,10 @@ sampleResourceCache:
   - kafkaBroker:kafka-broker
   - resourceRegistry:resource-registry
   - zookeeper:zookeeper
+
+restheart:
+  extends:
+    file: octowight/docker/restheart/docker-compose.yml
+    service: restheart
+  links:
+  - resourceRegistry:mongodb
