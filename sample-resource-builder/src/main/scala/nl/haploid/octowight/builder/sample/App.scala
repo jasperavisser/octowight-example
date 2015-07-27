@@ -1,4 +1,4 @@
-package nl.haploid.octowight.sample
+package nl.haploid.octowight.builder.sample
 
 import nl.haploid.octowight.service.MessageConsumerService
 import org.springframework.beans.factory.annotation.Autowired

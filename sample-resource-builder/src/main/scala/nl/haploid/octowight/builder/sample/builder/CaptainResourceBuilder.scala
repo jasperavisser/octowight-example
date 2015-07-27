@@ -1,4 +1,4 @@
-package nl.haploid.octowight.sample.builder
+package nl.haploid.octowight.builder.sample.builder
 
 import nl.haploid.octowight.JsonMapper
 import nl.haploid.octowight.builder.ResourceBuilder
