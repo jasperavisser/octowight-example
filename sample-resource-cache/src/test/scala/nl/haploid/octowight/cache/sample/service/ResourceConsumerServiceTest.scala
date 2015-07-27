@@ -1,11 +1,10 @@
-package nl.haploid.octowight.sample.service
+package nl.haploid.octowight.cache.sample.service
 
+import nl.haploid.octowight.cache.sample.AbstractTest
 import nl.haploid.octowight.kafka.{KafkaConsumer, KafkaConsumerFactory}
 import nl.haploid.octowight.registry.data.ResourceMessage
-import nl.haploid.octowight.sample.AbstractTest
 import nl.haploid.octowight.{JsonMapper, Mocked, Tested}
 import org.springframework.test.util.ReflectionTestUtils
-
 
 class ResourceConsumerServiceTest extends AbstractTest {
   @Tested private[this] val dirtyResourceConsumerService: ResourceConsumerService = null
@@ -53,5 +52,4 @@ class ResourceConsumerServiceTest extends AbstractTest {
       dirtyResourceConsumerService.commit()
     }
   }
-
 }

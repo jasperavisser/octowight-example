@@ -1,14 +1,13 @@
-package nl.haploid.octowight.sample
+package nl.haploid.octowight.cache.sample
 
+import nl.haploid.octowight.cache.sample.service.{CaptainCacheService, ResourceConsumerService}
 import nl.haploid.octowight.model.sample.data.{CaptainModel, JsonModelSerializer}
 import nl.haploid.octowight.registry.data.ResourceMessage
-import nl.haploid.octowight.sample.service.{CaptainCacheService, ResourceConsumerService}
 import nl.haploid.octowight.{Mocked, Tested}
 
+// TODO: move poll function to a service and test that
 class AppTest extends AbstractTest {
-
   @Tested private[this] val app: App = null
-
   @Mocked private[this] val resourceConsumerService: ResourceConsumerService = null
   @Mocked private[this] val cacheService: CaptainCacheService = null
   @Mocked private[this] val serializer: JsonModelSerializer[CaptainModel] = null

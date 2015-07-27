@@ -1,7 +1,7 @@
-package nl.haploid.octowight.sample
+package nl.haploid.octowight.cache.sample
 
+import nl.haploid.octowight.cache.sample.service.{CaptainCacheService, ResourceConsumerService}
 import nl.haploid.octowight.model.sample.data.{CaptainModel, JsonModelSerializer}
-import nl.haploid.octowight.sample.service.{CaptainCacheService, ResourceConsumerService}
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.SpringApplication
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration
@@ -15,22 +15,14 @@ object App {
 @EnableAutoConfiguration
 @ComponentScan(basePackages = Array("nl.haploid.octowight"))
 class App {
-
-  @Autowired
-  private[this] val resourceConsumerService: ResourceConsumerService = null
-
-  @Autowired
-  private[this] val cacheService: CaptainCacheService = null
-
-  @Autowired
-  private[this] val serializer: JsonModelSerializer[CaptainModel] = null
+  @Autowired private[this] val resourceConsumerService: ResourceConsumerService = null
+  @Autowired private[this] val captainCacheService: CaptainCacheService = null
+  @Autowired private[this] val captainModelSerializer: JsonModelSerializer[CaptainModel] = null
 
   @Scheduled(fixedRate = 1000)
   def poll(): Unit = {
-
-    val resourceMessages = resourceConsumerService.consumeResourceMessages().toList
-    resourceMessages.foreach(message => cacheService.saveResource(message))
+    val resourceMessages = resourceConsumerService.consumeResourceMessages()
+    resourceMessages.foreach(captainCacheService.saveResource)
     resourceConsumerService.commit()
   }
-
 }

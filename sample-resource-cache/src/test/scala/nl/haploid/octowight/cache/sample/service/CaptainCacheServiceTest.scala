@@ -1,9 +1,9 @@
-package nl.haploid.octowight.sample.service
+package nl.haploid.octowight.cache.sample.service
 
+import nl.haploid.octowight.cache.sample.AbstractTest
 import nl.haploid.octowight.model.sample.data.{CaptainModel, JsonModelSerializer}
 import nl.haploid.octowight.model.sample.repository.{CaptainDmo, CaptainDmoRepository}
 import nl.haploid.octowight.registry.data.{ResourceIdentifier, ResourceMessage}
-import nl.haploid.octowight.sample.AbstractTest
 import nl.haploid.octowight.{Mocked, Tested}
 
 class CaptainCacheServiceTest extends AbstractTest {
@@ -14,7 +14,6 @@ class CaptainCacheServiceTest extends AbstractTest {
   behavior of "Captain cache service"
 
   it should "save message" in {
-
     val resource = mock[CaptainModel]
     val identifier = new ResourceIdentifier(collection = "xxx", id = 123L)
     val message = new ResourceMessage(resourceIdentifier = identifier, model = "x", tombstone = false)
@@ -30,7 +29,6 @@ class CaptainCacheServiceTest extends AbstractTest {
   }
 
   it should "save empty message when tombstone is set" in {
-
     val resource = mock[CaptainModel]
     val identifier = new ResourceIdentifier(collection = "xxx", id = 123L)
     val message = new ResourceMessage(resourceIdentifier = identifier, model = "x", tombstone = true)
@@ -43,5 +41,4 @@ class CaptainCacheServiceTest extends AbstractTest {
       captainCacheService.saveResource(message)
     }
   }
-
 }

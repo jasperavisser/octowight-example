@@ -1,4 +1,4 @@
-package nl.haploid.octowight.sample.service
+package nl.haploid.octowight.cache.sample.service
 
 import nl.haploid.octowight.JsonMapper
 import nl.haploid.octowight.kafka.KafkaConsumerFactory
@@ -13,7 +13,6 @@ class ResourceConsumerService {
 
   @Value("${octowight.kafka.topic.resources.built}") private[this] val topic: String = null
   @Value("${octowight.kafka.limit.resources.built}") private[this] val limit: Int = 0
-
   @Autowired private[this] val kafkaConsumerFactory: KafkaConsumerFactory = null
   @Autowired private[this] val jsonMapper: JsonMapper = null
 
