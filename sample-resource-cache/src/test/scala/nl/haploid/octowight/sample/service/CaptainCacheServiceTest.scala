@@ -1,11 +1,10 @@
 package nl.haploid.octowight.sample.service
 
+import nl.haploid.octowight.model.sample.data.{CaptainModel, JsonModelSerializer}
+import nl.haploid.octowight.model.sample.repository.{CaptainDmo, CaptainDmoRepository}
 import nl.haploid.octowight.registry.data.{ResourceIdentifier, ResourceMessage}
 import nl.haploid.octowight.sample.AbstractTest
-import nl.haploid.octowight.sample.data.{CaptainModel, JsonModelSerializer}
-import nl.haploid.octowight.sample.repository.{CaptainDmo, CaptainDmoRepository}
 import nl.haploid.octowight.{Mocked, Tested}
-
 
 class CaptainCacheServiceTest extends AbstractTest {
   @Tested private[this] val captainCacheService: CaptainCacheService = null

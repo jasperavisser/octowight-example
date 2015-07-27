@@ -1,4 +1,4 @@
-package nl.haploid.octowight.sample.configuration
+package nl.haploid.octowight.model.sample.configuration
 
 import org.springframework.context.annotation.{ComponentScan, Configuration, FilterType}
 

@@ -1,10 +1,9 @@
 package nl.haploid.octowight.sample
 
+import nl.haploid.octowight.model.sample.data.{CaptainModel, JsonModelSerializer}
 import nl.haploid.octowight.registry.data.ResourceMessage
-import nl.haploid.octowight.sample.data.{CaptainModel, JsonModelSerializer}
 import nl.haploid.octowight.sample.service.{CaptainCacheService, ResourceConsumerService}
 import nl.haploid.octowight.{Mocked, Tested}
-
 
 class AppTest extends AbstractTest {
 

@@ -1,6 +1,6 @@
-package nl.haploid.octowight.sample
+package nl.haploid.octowight.model.sample
 
-import nl.haploid.octowight.sample.configuration.TestConfiguration
+import nl.haploid.octowight.model.sample.configuration.TestConfiguration
 import org.junit.runner.RunWith
 import org.scalatest._
 import org.scalatest.junit.JUnitRunner

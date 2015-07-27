@@ -1,6 +1,6 @@
 package nl.haploid.octowight.sample
 
-import nl.haploid.octowight.sample.data.{CaptainModel, JsonModelSerializer}
+import nl.haploid.octowight.model.sample.data.{CaptainModel, JsonModelSerializer}
 import nl.haploid.octowight.sample.service.{CaptainCacheService, ResourceConsumerService}
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.SpringApplication

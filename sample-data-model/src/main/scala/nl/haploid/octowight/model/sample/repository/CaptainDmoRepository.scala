@@ -1,4 +1,4 @@
-package nl.haploid.octowight.sample.repository
+package nl.haploid.octowight.model.sample.repository
 
 import java.lang
 

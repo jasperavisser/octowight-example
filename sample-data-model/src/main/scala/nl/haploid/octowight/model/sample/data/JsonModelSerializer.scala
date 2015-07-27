@@ -1,4 +1,4 @@
-package nl.haploid.octowight.sample.data
+package nl.haploid.octowight.model.sample.data
 
 import nl.haploid.octowight.JsonMapper
 import nl.haploid.octowight.registry.data.{Model, ModelSerializer}
