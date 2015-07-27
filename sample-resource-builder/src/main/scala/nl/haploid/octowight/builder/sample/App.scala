@@ -1,6 +1,6 @@
 package nl.haploid.octowight.builder.sample
 
-import nl.haploid.octowight.service.MessageConsumerService
+import nl.haploid.octowight.builder.service.MessageConsumerService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.SpringApplication
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration

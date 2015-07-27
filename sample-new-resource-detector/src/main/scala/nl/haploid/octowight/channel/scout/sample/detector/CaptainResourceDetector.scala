@@ -1,7 +1,7 @@
 package nl.haploid.octowight.channel.scout.sample.detector
 
 import nl.haploid.octowight.AtomChangeEvent
-import nl.haploid.octowight.detector.ResourceDetector
+import nl.haploid.octowight.channel.scout.detector.ResourceDetector
 import nl.haploid.octowight.registry.data.ResourceRoot
 import nl.haploid.octowight.source.sample.data.CaptainResource
 import nl.haploid.octowight.source.sample.repository.{RoleDmo, RoleDmoRepository}

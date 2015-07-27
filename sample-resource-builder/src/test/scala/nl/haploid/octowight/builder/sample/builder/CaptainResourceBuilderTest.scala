@@ -1,6 +1,6 @@
 package nl.haploid.octowight.builder.sample.builder
 
-import nl.haploid.octowight.builder.sample.{TestData, AbstractTest}
+import nl.haploid.octowight.builder.sample.{AbstractTest, TestData}
 import nl.haploid.octowight.model.sample.data.CaptainModel
 import nl.haploid.octowight.source.sample.repository.{PersonDmo, RoleDmo, RoleDmoRepository}
 import nl.haploid.octowight.{JsonMapper, Mocked, Tested}

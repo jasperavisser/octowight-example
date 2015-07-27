@@ -1,7 +1,7 @@
 package nl.haploid.octowight.cache.sample.service
 
 import nl.haploid.octowight.cache.sample.AbstractTest
-import nl.haploid.octowight.kafka.{KafkaConsumer, KafkaConsumerFactory}
+import nl.haploid.octowight.kafka.consumer.{KafkaConsumer, KafkaConsumerFactory}
 import nl.haploid.octowight.registry.data.ResourceMessage
 import nl.haploid.octowight.{JsonMapper, Mocked, Tested}
 import org.springframework.test.util.ReflectionTestUtils

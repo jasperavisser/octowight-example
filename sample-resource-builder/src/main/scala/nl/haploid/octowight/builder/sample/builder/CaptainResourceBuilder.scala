@@ -1,7 +1,7 @@
 package nl.haploid.octowight.builder.sample.builder
 
 import nl.haploid.octowight.JsonMapper
-import nl.haploid.octowight.builder.ResourceBuilder
+import nl.haploid.octowight.builder.builder.ResourceBuilder
 import nl.haploid.octowight.model.sample.data.CaptainModel
 import nl.haploid.octowight.registry.data.{Atom, ResourceIdentifier, ResourceMessage, ResourceRoot}
 import nl.haploid.octowight.source.sample.repository.RoleDmoRepository
