@@ -1,6 +1,6 @@
-package nl.haploid.octowight.sample
+package nl.haploid.octowight.source.sample
 
-import nl.haploid.octowight.sample.configuration.{PostgresConfiguration, TestConfiguration}
+import nl.haploid.octowight.source.sample.configuration.{TestConfiguration, PostgresConfiguration}
 import org.junit.runner.RunWith
 import org.scalatest._
 import org.scalatest.junit.JUnitRunner

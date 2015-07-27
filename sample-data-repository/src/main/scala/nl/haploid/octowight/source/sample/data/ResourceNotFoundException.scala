@@ -1,3 +1,3 @@
-package nl.haploid.octowight.sample.data
+package nl.haploid.octowight.source.sample.data
 
 class ResourceNotFoundException extends RuntimeException

@@ -1,4 +1,4 @@
-package nl.haploid.octowight.sample.data
+package nl.haploid.octowight.source.sample.data
 
 object CaptainResource {
   val ResourceCollection: String = "captain"

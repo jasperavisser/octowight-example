@@ -4,7 +4,7 @@ import nl.haploid.octowight.JsonMapper
 import nl.haploid.octowight.builder.ResourceBuilder
 import nl.haploid.octowight.model.sample.data.CaptainModel
 import nl.haploid.octowight.registry.data.{Atom, ResourceIdentifier, ResourceMessage, ResourceRoot}
-import nl.haploid.octowight.sample.repository.RoleDmoRepository
+import nl.haploid.octowight.source.sample.repository.RoleDmoRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Component
 import org.springframework.transaction.annotation.Transactional

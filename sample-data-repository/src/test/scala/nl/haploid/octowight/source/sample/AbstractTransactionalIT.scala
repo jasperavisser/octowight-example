@@ -1,4 +1,4 @@
-package nl.haploid.octowight.sample
+package nl.haploid.octowight.source.sample
 
 import org.scalatest.OneInstancePerTest
 import org.springframework.beans.factory.annotation.Autowired

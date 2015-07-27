@@ -3,9 +3,9 @@ package nl.haploid.octowight.sample.detector
 import java.util
 
 import nl.haploid.octowight.registry.data.ResourceRoot
-import nl.haploid.octowight.sample.data.CaptainResource
-import nl.haploid.octowight.sample.repository.{PersonDmo, RoleDmoRepository}
 import nl.haploid.octowight.sample.{AbstractTest, TestData}
+import nl.haploid.octowight.source.sample.data.CaptainResource
+import nl.haploid.octowight.source.sample.repository.{PersonDmo, RoleDmoRepository}
 import nl.haploid.octowight.{Mocked, Tested}
 import org.easymock.EasyMock
 

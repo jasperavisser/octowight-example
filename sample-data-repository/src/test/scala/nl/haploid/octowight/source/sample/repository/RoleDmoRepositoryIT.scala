@@ -1,6 +1,6 @@
-package nl.haploid.octowight.sample.repository
+package nl.haploid.octowight.source.sample.repository
 
-import nl.haploid.octowight.sample.{AbstractTransactionalIT, TestData}
+import nl.haploid.octowight.source.sample.{AbstractTransactionalIT, TestData}
 import org.springframework.beans.factory.annotation.Autowired
 
 class RoleDmoRepositoryIT extends AbstractTransactionalIT {

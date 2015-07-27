@@ -1,8 +1,9 @@
 package nl.haploid.octowight.sample
 
 import java.util.{Random, UUID}
-import nl.haploid.octowight.registry.data.{ResourceMessage, Atom, ResourceIdentifier, ResourceRoot}
-import nl.haploid.octowight.sample.repository.RoleDmo
+
+import nl.haploid.octowight.registry.data.{Atom, ResourceIdentifier, ResourceMessage, ResourceRoot}
+import nl.haploid.octowight.source.sample.repository.RoleDmo
 
 object TestData {
 

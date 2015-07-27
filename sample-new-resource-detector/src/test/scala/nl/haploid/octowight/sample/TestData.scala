@@ -4,7 +4,7 @@ import java.util.{Random, UUID}
 
 import nl.haploid.octowight.AtomChangeEvent
 import nl.haploid.octowight.registry.data.{Atom, ResourceRoot}
-import nl.haploid.octowight.sample.repository.{PersonDmo, RoleDmo}
+import nl.haploid.octowight.source.sample.repository.{PersonDmo, RoleDmo}
 
 object TestData {
 

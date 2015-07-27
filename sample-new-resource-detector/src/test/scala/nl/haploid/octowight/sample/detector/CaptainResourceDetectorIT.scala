@@ -2,8 +2,8 @@ package nl.haploid.octowight.sample.detector
 
 import javax.persistence.{EntityManager, PersistenceContext}
 
-import nl.haploid.octowight.sample.repository.{PersonDmoRepository, RoleDmoRepository}
 import nl.haploid.octowight.sample.{AbstractTransactionalIT, TestData}
+import nl.haploid.octowight.source.sample.repository.{PersonDmoRepository, RoleDmoRepository}
 import org.springframework.beans.factory.annotation.Autowired
 
 class CaptainResourceDetectorIT extends AbstractTransactionalIT {

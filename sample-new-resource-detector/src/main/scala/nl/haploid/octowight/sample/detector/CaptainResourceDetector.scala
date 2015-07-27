@@ -3,8 +3,8 @@ package nl.haploid.octowight.sample.detector
 import nl.haploid.octowight.AtomChangeEvent
 import nl.haploid.octowight.detector.ResourceDetector
 import nl.haploid.octowight.registry.data.ResourceRoot
-import nl.haploid.octowight.sample.data.CaptainResource
-import nl.haploid.octowight.sample.repository.{RoleDmo, RoleDmoRepository}
+import nl.haploid.octowight.source.sample.data.CaptainResource
+import nl.haploid.octowight.source.sample.repository.{RoleDmo, RoleDmoRepository}
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Component
 import org.springframework.transaction.annotation.Transactional

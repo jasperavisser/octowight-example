@@ -1,4 +1,4 @@
-package nl.haploid.octowight.sample.configuration
+package nl.haploid.octowight.source.sample.configuration
 
 import javax.persistence.EntityManagerFactory
 import javax.sql.DataSource
@@ -14,7 +14,7 @@ import org.springframework.transaction.PlatformTransactionManager
 import org.springframework.transaction.annotation.EnableTransactionManagement
 
 @Configuration
-@EnableJpaRepositories(basePackages = Array("nl.haploid.octowight.sample.repository"))
+@EnableJpaRepositories(basePackages = Array("nl.haploid.octowight.source.sample.repository"))
 @EnableTransactionManagement(proxyTargetClass = true)
 @PropertySources(value = Array())
 class PostgresConfiguration {
@@ -42,7 +42,7 @@ class PostgresConfiguration {
     vendorAdapter.setShowSql(true)
     val factory = new LocalContainerEntityManagerFactoryBean
     factory.setJpaVendorAdapter(vendorAdapter)
-    factory.setPackagesToScan("nl.haploid.octowight.sample.repository")
+    factory.setPackagesToScan("nl.haploid.octowight.source.sample.repository")
     factory.setDataSource(dataSource)
     factory.afterPropertiesSet()
     factory.getObject

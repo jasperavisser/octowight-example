@@ -1,4 +1,4 @@
-package nl.haploid.octowight.sample.configuration
+package nl.haploid.octowight.source.sample.configuration
 
 import java.util.Properties
 
