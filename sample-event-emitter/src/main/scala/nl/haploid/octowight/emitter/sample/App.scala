@@ -1,6 +1,6 @@
-package nl.haploid.octowight.sample
+package nl.haploid.octowight.emitter.sample
 
-import nl.haploid.octowight.sample.repository.AtomChangeEventDmoRepository
+import nl.haploid.octowight.emitter.sample.repository.AtomChangeEventDmoRepository
 import nl.haploid.octowight.service.EventChannelService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.SpringApplication

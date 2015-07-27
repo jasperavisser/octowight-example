@@ -1,4 +1,4 @@
-package nl.haploid.octowight.sample
+package nl.haploid.octowight.emitter.sample
 
 import nl.haploid.octowight.EasyMockInjection
 import org.junit.runner.RunWith

@@ -1,9 +1,8 @@
-package nl.haploid.octowight.sample.repository
+package nl.haploid.octowight.emitter.sample.repository
 
-import nl.haploid.octowight.sample.{AbstractIT, TestData}
+import nl.haploid.octowight.emitter.sample.{AbstractIT, TestData}
 import org.springframework.beans.factory.annotation.Autowired
 import scalikejdbc._
-
 
 class AtomChangeEventDmoRepositoryIT extends AbstractIT {
   @Autowired private[this] val atomChangeEventDmoRepository: AtomChangeEventDmoRepository = null

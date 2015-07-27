@@ -1,4 +1,4 @@
-package nl.haploid.octowight.sample.configuration
+package nl.haploid.octowight.emitter.sample.configuration
 
 import javax.sql.DataSource
 

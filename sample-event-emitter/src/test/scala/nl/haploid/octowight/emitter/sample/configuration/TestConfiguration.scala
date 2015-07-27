@@ -1,9 +1,9 @@
-package nl.haploid.octowight.sample.configuration
+package nl.haploid.octowight.emitter.sample.configuration
 
 import java.util.Properties
 
 import nl.haploid.octowight.JsonMapper
-import nl.haploid.octowight.sample.TestData
+import nl.haploid.octowight.emitter.sample.TestData
 import org.springframework.context.annotation.{Bean, ComponentScan, Configuration, FilterType}
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer
 

@@ -1,8 +1,8 @@
-package nl.haploid.octowight.sample
+package nl.haploid.octowight.emitter.sample
 
 import java.util.{Random, UUID}
 
-import nl.haploid.octowight.sample.repository.AtomChangeEventDmo
+import nl.haploid.octowight.emitter.sample.repository.AtomChangeEventDmo
 
 object TestData {
   val AtomLocus = nextString

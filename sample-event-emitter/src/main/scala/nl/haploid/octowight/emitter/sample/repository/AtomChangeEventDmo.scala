@@ -1,4 +1,4 @@
-package nl.haploid.octowight.sample.repository
+package nl.haploid.octowight.emitter.sample.repository
 
 import nl.haploid.octowight.AtomChangeEvent
 import scalikejdbc.WrappedResultSet

@@ -1,10 +1,10 @@
-package nl.haploid.octowight.sample.repository
+package nl.haploid.octowight.emitter.sample.repository
 
 import org.springframework.stereotype.Repository
 import scalikejdbc._
 
 @Repository
-class AtomChangeEventDmoRepository extends ScalikeJdbcAccess {
+class AtomChangeEventDmoRepository {
 
   def delete(atomChangeEventDmos: List[AtomChangeEventDmo])(implicit session: DBSession): Int = {
     if (atomChangeEventDmos.nonEmpty) {
