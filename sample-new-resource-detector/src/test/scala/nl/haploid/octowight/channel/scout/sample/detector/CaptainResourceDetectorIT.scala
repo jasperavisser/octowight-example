@@ -1,8 +1,8 @@
-package nl.haploid.octowight.sample.detector
+package nl.haploid.octowight.channel.scout.sample.detector
 
 import javax.persistence.{EntityManager, PersistenceContext}
 
-import nl.haploid.octowight.sample.{AbstractTransactionalIT, TestData}
+import nl.haploid.octowight.channel.scout.sample.{TestData, AbstractTransactionalIT}
 import nl.haploid.octowight.source.sample.repository.{PersonDmoRepository, RoleDmoRepository}
 import org.springframework.beans.factory.annotation.Autowired
 

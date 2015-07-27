@@ -1,4 +1,4 @@
-package nl.haploid.octowight.sample
+package nl.haploid.octowight.channel.scout.sample
 
 import nl.haploid.octowight.service.EventHandlerService
 import org.springframework.beans.factory.annotation.{Autowired, Value}

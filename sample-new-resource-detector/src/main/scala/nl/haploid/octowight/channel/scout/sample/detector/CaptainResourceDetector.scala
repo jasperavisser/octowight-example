@@ -1,4 +1,4 @@
-package nl.haploid.octowight.sample.detector
+package nl.haploid.octowight.channel.scout.sample.detector
 
 import nl.haploid.octowight.AtomChangeEvent
 import nl.haploid.octowight.detector.ResourceDetector

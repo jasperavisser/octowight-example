@@ -1,7 +1,7 @@
-package nl.haploid.octowight.sample
+package nl.haploid.octowight.channel.scout.sample
 
+import nl.haploid.octowight.channel.scout.sample.configuration.TestConfiguration
 import nl.haploid.octowight.configuration.KafkaConfiguration
-import nl.haploid.octowight.sample.configuration.TestConfiguration
 import nl.haploid.octowight.source.sample.configuration.PostgresConfiguration
 import org.junit.runner.RunWith
 import org.scalatest._

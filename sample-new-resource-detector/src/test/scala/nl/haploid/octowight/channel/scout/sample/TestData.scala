@@ -1,4 +1,4 @@
-package nl.haploid.octowight.sample
+package nl.haploid.octowight.channel.scout.sample
 
 import java.util.{Random, UUID}
 
