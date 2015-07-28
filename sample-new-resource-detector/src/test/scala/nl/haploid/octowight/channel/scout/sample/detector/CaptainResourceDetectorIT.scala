@@ -1,40 +1,43 @@
 package nl.haploid.octowight.channel.scout.sample.detector
 
-import javax.persistence.{EntityManager, PersistenceContext}
-
-import nl.haploid.octowight.channel.scout.sample.{TestData, AbstractTransactionalIT}
-import nl.haploid.octowight.source.sample.repository.{PersonDmoRepository, RoleDmoRepository}
+import nl.haploid.octowight.channel.scout.sample.{AbstractIT, TestData}
 import org.springframework.beans.factory.annotation.Autowired
+import scalikejdbc._
 
-class CaptainResourceDetectorIT extends AbstractTransactionalIT {
-  @Autowired private[this] val detector: CaptainResourceDetector = null
-  @Autowired private[this] val personDmoRepository: PersonDmoRepository = null
-  @Autowired private[this] val roleDmoRepository: RoleDmoRepository = null
-  @PersistenceContext private[this] val entityManager: EntityManager = null
+class CaptainResourceDetectorIT extends AbstractIT {
+  @Autowired private[this] val captainResourceDetector: CaptainResourceDetector = null
 
-  behavior of "Captain resource detector"
+  behavior of "Captain resource captainResourceDetector"
 
-  it should "get roles by id" in {
-    val personDmo = personDmoRepository.saveAndFlush(TestData.personDmo)
-    val roleDmo1 = roleDmoRepository.saveAndFlush(TestData.roleDmo(personDmo, "first mate"))
-    roleDmoRepository.saveAndFlush(TestData.roleDmo(personDmo, "harpooner"))
-    val event1 = TestData.atomChangeEvent(roleDmo1.getId)
-    val events = List(event1)
-    val dmosById = detector.findRolesById(events)
-    dmosById should have size 1
-    dmosById.get(roleDmo1.getId).orNull should be(roleDmo1)
+  val personId1 = TestData.nextLong
+  val personId2 = TestData.nextLong
+  val personId3 = TestData.nextLong
+
+  override def fixture(implicit session: DBSession): Unit = {
+    sql"delete from octowight.role".update().apply()
+    sql"delete from octowight.person".update().apply()
+    sql"insert into octowight.person(id, name) values($personId1, ${TestData.nextString})".update().apply()
+    sql"insert into octowight.person(id, name) values($personId2, ${TestData.nextString})".update().apply()
+    sql"insert into octowight.person(id, name) values($personId3, ${TestData.nextString})".update().apply()
+    sql"insert into octowight.role(person, name) values($personId1, ${CaptainResourceDetector.RoleType})".update().apply()
+    sql"insert into octowight.role(person, name) values($personId2, ${CaptainResourceDetector.RoleType})".update().apply()
+    sql"insert into octowight.role(person, name) values($personId3, 'deckhand')".update().apply()
   }
 
-  it should "detect captains" in {
-    val personDmo = personDmoRepository.saveAndFlush(TestData.personDmo)
-    val dmo1 = roleDmoRepository.saveAndFlush(TestData.roleDmo(personDmo, CaptainResourceDetector.RoleType))
-    val dmo2 = roleDmoRepository.saveAndFlush(TestData.roleDmo(personDmo, "deckhand"))
-    entityManager.clear()
-    val event1 = TestData.atomChangeEvent(dmo1.getId)
-    val event2 = TestData.atomChangeEvent(dmo2.getId)
+  it should "find captains by person id" in { implicit session =>
+    val events = List(TestData.atomChangeEvent(personId1), TestData.atomChangeEvent(personId3))
+    val captainsByPersonId = captainResourceDetector.findCaptainsByPersonId(events)
+    captainsByPersonId should have size 2
+    captainsByPersonId.keySet should contain(personId1)
+    captainsByPersonId.keySet should contain(personId2)
+  }
+
+  it should "detect captains" in { implicit session =>
+    val event1 = TestData.atomChangeEvent(personId1)
+    val event2 = TestData.atomChangeEvent(personId3)
     val events = List(event1, event2)
-    val actualResourceRoots = detector.detect(events)
+    val actualResourceRoots = captainResourceDetector.detect(events)
     actualResourceRoots should have size 1
-    actualResourceRoots.map(_.root.id) should be(List(dmo1.getId))
+    actualResourceRoots.map(_.root.id) should be(Set(personId1))
   }
 }

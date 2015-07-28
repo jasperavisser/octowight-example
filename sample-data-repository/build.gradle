@@ -1,11 +1,8 @@
 dependencies {
     compile project(":sample-data-model")
+    compile "org.scalikejdbc:scalikejdbc_2.11"
+    compile "org.scalikejdbc:scalikejdbc-test_2.11"
     compile "com.jolbox:bonecp-spring"
-    compile "org.aspectj:aspectjweaver"
-    compile "org.hibernate:hibernate-entitymanager"
     compile "org.postgresql:postgresql"
-    compile "org.springframework:spring-orm"
-    compile "org.springframework.data:spring-data-commons"
-    compile "org.springframework.data:spring-data-jpa"
     testCompile project(":spring-scala-mock")
 }

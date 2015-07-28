@@ -3,7 +3,6 @@ package nl.haploid.octowight.builder.sample
 import java.util.{Random, UUID}
 
 import nl.haploid.octowight.registry.data.{Atom, ResourceIdentifier, ResourceMessage, ResourceRoot}
-import nl.haploid.octowight.source.sample.repository.RoleDmo
 
 object TestData {
 
@@ -17,8 +16,5 @@ object TestData {
 
   def resourceIdentifier = new ResourceIdentifier(collection = nextString, id = nextLong)
 
-  def resourceRoot =
-    new ResourceRoot(resourceId = nextLong, resourceCollection = "captain", root = atom, version = nextLong)
-
-  def roleDmo = new RoleDmo
+  def resourceRoot = new ResourceRoot(resourceId = nextLong, resourceCollection = "captain", root = atom, version = nextLong)
 }

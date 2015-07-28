@@ -1,48 +1,35 @@
 package nl.haploid.octowight.channel.scout.sample.detector
 
 import nl.haploid.octowight.AtomChangeEvent
-import nl.haploid.octowight.channel.scout.detector.ResourceDetector
 import nl.haploid.octowight.registry.data.ResourceRoot
 import nl.haploid.octowight.source.sample.data.CaptainResource
-import nl.haploid.octowight.source.sample.repository.{RoleDmo, RoleDmoRepository}
+import nl.haploid.octowight.source.sample.repository.{CaptainDmo, CaptainDmoRepository}
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Component
-import org.springframework.transaction.annotation.Transactional
-
-import scala.collection.JavaConverters._
+import scalikejdbc.DBSession
 
 object CaptainResourceDetector {
   val RoleType = "captain"
 }
 
 @Component
-class CaptainResourceDetector extends ResourceDetector {
-  @Autowired protected val roleDmoRepository: RoleDmoRepository = null
+class CaptainResourceDetector extends ResourceDetectorWithSession {
+  @Autowired protected val captainDmoRepository: CaptainDmoRepository = null
 
-  override def atomCategories = List(RoleDmo.AtomCategory)
+  override def atomCategories = Set("person")
 
-  @Transactional(readOnly = true)
-  override def detect(events: Traversable[AtomChangeEvent]): Traversable[ResourceRoot] = {
-    val rolesById = findRolesById(events)
+  override def detect(events: Traversable[AtomChangeEvent])(implicit session: DBSession): Set[ResourceRoot] = {
+    val captainsByPersonId = findCaptainsByPersonId(events)
     events
-      .filter(event => {
-      rolesById.get(event.atomId) match {
-        case Some(roleDmo) => isCaptain(roleDmo)
-        case None => false
-      }
-    })
+      .filter(event => captainsByPersonId.get(event.atomId).isDefined)
       .map(ResourceRoot(_, CaptainResource.ResourceCollection))
+      .toSet
   }
 
-  def findRolesById(events: Traversable[AtomChangeEvent]) = {
-    val roleIds = events.map(_.atomId).toList
-    roleDmoRepository.findAll(roleIds.asJava)
-      .asScala
-      .map(roleDmo => roleDmo.getId -> roleDmo)
+  def findCaptainsByPersonId(events: Traversable[AtomChangeEvent])(implicit session: DBSession): Map[Long, CaptainDmo] = {
+    val personIds = events.map(_.atomId).toSet
+    captainDmoRepository.findByPersonIds(personIds)
+      .map(captainDmo => captainDmo.personId -> captainDmo)
       .toMap
-  }
-
-  def isCaptain(roleDmo: RoleDmo) = {
-    CaptainResourceDetector.RoleType == roleDmo.getName
   }
 }

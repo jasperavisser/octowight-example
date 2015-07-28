@@ -1,72 +1,65 @@
 package nl.haploid.octowight.channel.scout.sample.detector
 
-import java.util
-
-import nl.haploid.octowight.channel.scout.sample.{TestData, AbstractTest}
+import nl.haploid.octowight.channel.scout.sample.{AbstractTest, TestData}
 import nl.haploid.octowight.registry.data.ResourceRoot
 import nl.haploid.octowight.source.sample.data.CaptainResource
-import nl.haploid.octowight.source.sample.repository.{PersonDmo, RoleDmoRepository}
+import nl.haploid.octowight.source.sample.repository.{CaptainDmo, CaptainDmoRepository}
 import nl.haploid.octowight.{Mocked, Tested}
 import org.easymock.EasyMock
+import scalikejdbc.DBSession
 
 class CaptainResourceDetectorTest extends AbstractTest {
-  @Tested private[this] val detector: CaptainResourceDetector = null
-  @Mocked private[this] val roleDmoRepository: RoleDmoRepository = null
+  @Tested private[this] val captainResourceDetector: CaptainResourceDetector = null
+  @Mocked private[this] val captainDmoRepository: CaptainDmoRepository = null
 
-  behavior of "Captain resource detector"
+  behavior of "Captain resource captainResourceDetector"
+
+  implicit val session = mock[DBSession]
 
   it should "have an atom category" in {
-    detector.atomCategories should have size 1
+    captainResourceDetector.atomCategories should have size 1
   }
 
   it should "detect captains" in {
-    val detector = withMocks(EasyMock.createMockBuilder(classOf[CaptainResourceDetector])
-      .addMockedMethod("findRolesById")
-      .addMockedMethod("isCaptain")
+    val captainResourceDetector = withMocks(EasyMock.createMockBuilder(classOf[CaptainResourceDetector])
+      .addMockedMethod("findCaptainsByPersonId")
       .createMock())
     val event1 = TestData.atomChangeEvent
     val event2 = TestData.atomChangeEvent
     val event3 = TestData.atomChangeEvent
     val events = List(event1, event2, event3)
-    val roleDmo1 = TestData.roleDmo(event1.atomId)
-    val roleDmo2 = TestData.roleDmo(event2.atomId)
-    val rolesById = Map((event1.atomId, roleDmo1), (event2.atomId, roleDmo2))
+    val captainDmo1 = mock[CaptainDmo]
+    val captainDmo2 = mock[CaptainDmo]
+    val captainsByPersonId = Map((event2.atomId, captainDmo2))
     val resourceRoot = ResourceRoot(event2, CaptainResource.ResourceCollection)
-    val expectedResourceRoots = List(resourceRoot)
+    val expectedResourceRoots = Set(resourceRoot)
     expecting {
-      detector.findRolesById(events) andReturn rolesById once()
-      detector.isCaptain(roleDmo1) andReturn false once()
-      detector.isCaptain(roleDmo2) andReturn true once()
+      captainResourceDetector.findCaptainsByPersonId(events) andReturn captainsByPersonId once()
     }
-    whenExecuting(detector) {
-      val actualResourceRoots = detector.detect(events)
+    whenExecuting(captainResourceDetector) {
+      val actualResourceRoots = captainResourceDetector.detect(events)
       actualResourceRoots should be(expectedResourceRoots)
     }
   }
 
-  it should "get roles by id" in {
+  it should "find captains by person id" in {
     val event1 = TestData.atomChangeEvent
     val event2 = TestData.atomChangeEvent
     val events = List(event1, event2)
     val id1 = event1.atomId
     val id2 = event2.atomId
-    val roleDmo1 = TestData.roleDmo(id1)
-    val roleDmo2 = TestData.roleDmo(id2)
+    val captainDmo1 = mock[CaptainDmo]
+    val captainDmo2 = mock[CaptainDmo]
+    val captainDmos = List(captainDmo1, captainDmo2)
     expecting {
-      roleDmoRepository.findAll(util.Arrays.asList(id1, id2)) andReturn util.Arrays.asList(roleDmo1, roleDmo2) once()
+      captainDmoRepository.findByPersonIds(Set(id1, id2)) andReturn captainDmos once()
+      captainDmo1.personId andReturn id1 once()
+      captainDmo2.personId andReturn id2 once()
     }
-    whenExecuting(roleDmoRepository) {
-      val rolesById = detector.findRolesById(events)
-      rolesById.get(id1).orNull should be(roleDmo1)
-      rolesById.get(id2).orNull should be(roleDmo2)
+    whenExecuting(captainDmoRepository, captainDmo1, captainDmo2) {
+      val captainsByPersonId = captainResourceDetector.findCaptainsByPersonId(events)
+      captainsByPersonId.get(id1).orNull should be(captainDmo1)
+      captainsByPersonId.get(id2).orNull should be(captainDmo2)
     }
-  }
-
-  it should "recognize a captain" in {
-    val personDmo = mock[PersonDmo]
-    val roleDmo1 = TestData.roleDmo(personDmo, "harpooner")
-    val roleDmo2 = TestData.roleDmo(personDmo, CaptainResourceDetector.RoleType)
-    detector.isCaptain(roleDmo1) should be(right = false)
-    detector.isCaptain(roleDmo2) should be(right = true)
   }
 }
