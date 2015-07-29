@@ -2,7 +2,7 @@ package nl.haploid.octowight.channel.scout.sample.detector
 
 import java.util
 
-import nl.haploid.octowight.AtomChangeEvent
+import nl.haploid.octowight.AtomGroup
 import nl.haploid.octowight.channel.scout.detector.ResourceDetector
 import nl.haploid.octowight.registry.data.ResourceRoot
 import org.springframework.beans.factory.annotation.Autowired
@@ -13,18 +13,17 @@ import scala.collection.JavaConverters._
 
 @Component
 class ResourceDetectorsWithSession extends ResourceDetector {
-  @Autowired private[this] val resourceDetectorsWithSession: util.List[ResourceDetectorWithSession] = null
+  @Autowired private[this] val _resourceDetectorsWithSession: util.List[ResourceDetectorWithSession] = null
 
-  override lazy val atomCategories = {
-    val detectors = resourceDetectorsWithSession.asScala.toSet
-    detectors.flatMap(_.atomCategories)
-  }
+  def resourceDetectorsWithSession = _resourceDetectorsWithSession.asScala.toSet
 
-  override def detect(events: Traversable[AtomChangeEvent]): Traversable[ResourceRoot] = {
+  override lazy val atomCategories = resourceDetectorsWithSession.flatMap(_.atomCategories)
+
+  override def detect(atomGroup: AtomGroup, atomIds: Set[Long]): Set[ResourceRoot] = {
     DB localTx { implicit session =>
-      resourceDetectorsWithSession.asScala.flatMap { detector =>
-        detector.detect(events.filter(event => detector.atomCategories.contains(event.atomCategory)))
-      }
+      resourceDetectorsWithSession
+        .filter(_.atomCategories.contains(atomGroup.category))
+        .flatMap(_.detect(atomGroup, atomIds))
     }
   }
 }

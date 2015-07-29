@@ -11,6 +11,5 @@ object AtomChangeEventDmo {
 
 case class AtomChangeEventDmo(id: Long, atomId: Long, atomOrigin: String, atomCategory: String) {
 
-  def toAtomChangeEvent =
-    new AtomChangeEvent(id = id, atomId = atomId, atomOrigin = atomOrigin, atomCategory = atomCategory)
+  def toAtomChangeEvent = AtomChangeEvent(id = atomId, origin = atomOrigin, category = atomCategory)
 }

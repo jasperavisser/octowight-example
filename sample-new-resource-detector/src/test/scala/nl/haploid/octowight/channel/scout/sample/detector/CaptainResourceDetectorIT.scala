@@ -25,8 +25,10 @@ class CaptainResourceDetectorIT extends AbstractIT {
   }
 
   it should "find captains by person id" in { implicit session =>
-    val events = List(TestData.atomChangeEvent(personId1), TestData.atomChangeEvent(personId3))
-    val captainsByPersonId = captainResourceDetector.findCaptainsByPersonId(events)
+    val event1 = TestData.atomChangeEvent(personId1)
+    val event2 = TestData.atomChangeEvent(personId3)
+    val atomIds = Set(event1.id, event2.id)
+    val captainsByPersonId = captainResourceDetector.findCaptainsByPersonId(atomIds)
     captainsByPersonId should have size 2
     captainsByPersonId.keySet should contain(personId1)
     captainsByPersonId.keySet should contain(personId2)
@@ -35,8 +37,8 @@ class CaptainResourceDetectorIT extends AbstractIT {
   it should "detect captains" in { implicit session =>
     val event1 = TestData.atomChangeEvent(personId1)
     val event2 = TestData.atomChangeEvent(personId3)
-    val events = List(event1, event2)
-    val actualResourceRoots = captainResourceDetector.detect(events)
+    val atomIds = Set(event1.id, event2.id)
+    val actualResourceRoots = captainResourceDetector.detect(event1.atomGroup, atomIds)
     actualResourceRoots should have size 1
     actualResourceRoots.map(_.root.id) should be(Set(personId1))
   }

@@ -6,14 +6,12 @@ import nl.haploid.octowight.registry.data.{Atom, ResourceRoot}
 
 object TestData {
 
-  def name = nextString
-
-  def nextString = UUID.randomUUID.toString
+  def atom = new Atom(nextLong, nextString, nextString)
 
   def nextLong: Long = new Random().nextLong
 
+  def nextString = UUID.randomUUID.toString
+
   def resourceRoot =
     new ResourceRoot(resourceId = nextLong, resourceCollection = nextString, root = atom, version = null)
-
-  def atom = new Atom(nextLong, nextString, nextString)
 }
