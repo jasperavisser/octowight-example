@@ -1,8 +1,9 @@
 package nl.haploid.octowight.cache.sample.service
 
 import nl.haploid.octowight.model.sample.data.{CaptainModel, JsonModelSerializer}
-import nl.haploid.octowight.model.sample.repository.{CaptainDmo, CaptainDmoRepository}
+import nl.haploid.octowight.model.sample.repository.CaptainDmo
 import nl.haploid.octowight.registry.data._
+import nl.haploid.octowight.registry.repository.CaptainDmoRepository
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service

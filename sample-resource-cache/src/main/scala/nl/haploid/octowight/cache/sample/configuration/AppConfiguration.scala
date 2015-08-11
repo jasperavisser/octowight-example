@@ -7,7 +7,7 @@ import org.springframework.scheduling.annotation.EnableScheduling
 
 @Configuration
 @EnableScheduling
-@EnableMongoRepositories(basePackages = Array("nl.haploid.octowight.cache.sample.repository"))
+@EnableMongoRepositories(basePackages = Array("nl.haploid.octowight.registry"))
 class AppConfiguration {
 
   @Bean def jsonMapper = new JsonMapper
